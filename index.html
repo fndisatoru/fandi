@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RANDOMIZE - Platform hiburan dengan koleksi gambar, video, meme, dan konten kreatif">
+    <meta name="theme-color" content="#111111">
+    <title>Irfandi semester 5 Informatika</title>
+
+    <link rel="icon" type="image/png" href="assets/RandomizeForFun(735 x 416 px).png">
+
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="randomize.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container-fluid">
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    
+<div class="navbar-brand">
+    <img src="assets/RandomizeForFun(735 x 416 px).png" class="logo-img">
+    <span>RANDOMIZE</span>
+</div>
+
+
+
+                <img src="assets/RandomizeForFun(735 x 416 px).png" 
+                    alt="Randomize Logo" 
+                        class="logo-img">
+            </div>
+
+                
+                <div class="navbar-center">
+                    <div class="search-container">
+                        <i class="bi bi-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Cari konten...">
+                        <button id="clearSearch" class="clear-btn">
+                            <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="navbar-actions">
+                    <button class="btn-icon" id="themeToggle" title="Toggle Theme">
+                        <i class="bi bi-moon-stars"></i>
+                    </button>
+                    <button class="btn-icon" id="audioToggle" title="Toggle Audio">
+                        <i class="bi bi-volume-up"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Category Filter -->
+    <section class="category-section">
+        <div class="container-fluid">
+            <div class="category-scroll">
+                <button class="category-btn active" data-category="all">
+                    <i class="bi bi-grid-3x3"></i> Semua
+                </button>
+                <button class="category-btn" data-category="meme">
+                    <i class="bi bi-emoji-laughing"></i> Meme
+                </button>
+                <button class="category-btn" data-category="kampus">
+                    <i class="bi bi-book"></i> Kampus
+                </button>
+                <button class="category-btn" data-category="fotografi">
+                    <i class="bi bi-camera"></i> Fotografi
+                </button>
+                <button class="category-btn" data-category="cinematic">
+                    <i class="bi bi-film"></i> Cinematic
+                </button>
+                <button class="category-btn" data-category="artwork">
+                    <i class="bi bi-palette"></i> Artwork
+                </button>
+                <button class="category-btn" data-category="motivasi">
+                    <i class="bi bi-lightning"></i> Motivasi
+                </button>
+                <button class="category-btn" data-category="vlog">
+                    <i class="bi bi-camera-video"></i> Vlog
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Gallery Grid -->
+            <div id="gallery" class="gallery-grid">
+                <!-- Loading Skeleton -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator">
+                <div class="spinner"></div>
+                <p>Memuat konten...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Viewer -->
+    <div id="modalViewer" class="modal-viewer">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content-wrapper">
+            <button class="modal-close" id="modalClose">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            
+            <div class="modal-body">
+                <div class="modal-media">
+                    <!-- Image or Video will be inserted here -->
+                </div>
+                
+                <div class="modal-info">
+                    <div class="modal-header-info">
+                        <h3 id="modalTitle"></h3>
+                        <div class="modal-actions">
+                            <button class="btn-action" id="modalLike">
+                                <i class="bi bi-heart"></i>
+                                <span id="modalLikeCount">0</span>
+                            </button>
+                            <button class="btn-action" id="modalFavorite">
+                                <i class="bi bi-bookmark"></i>
+                            </button>
+                            <button class="btn-action" id="modalShare">
+                                <i class="bi bi-share"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p id="modalCategory" class="modal-category"></p>
+                    <p id="modalDescription" class="modal-description"></p>
+                </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button class="modal-nav modal-prev" id="modalPrev">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="modal-nav modal-next" id="modalNext">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home">
+            <i class="bi bi-house-door"></i>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" data-page="explore">
+            <i class="bi bi-compass"></i>
+            <span>Explore</span>
+        </button>
+        <button class="nav-item" data-page="favorite">
+            <i class="bi bi-heart"></i>
+            <span>Favorite</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+        </button>
+    </nav>
+
+    <!-- Background Audio -->
+    <audio id="bgAudio" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="randomize.js"></script>
+</body>
+</html>
